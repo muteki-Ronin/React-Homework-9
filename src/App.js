@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// CORE
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+// ACTIONS
+import { getUsersAction } from "./store/actions/actions";
+// SELECTORS
+import { usersSelector } from "./store/selectors/selectors";
 
-function App() {
+export const App = () => {
+  const dispatch = useDispatch();
+  const dataUsers = useSelector(usersSelector);
+
+  useEffect(() => {
+    dispatch(getUsersAction());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>SAGA</h1>
+
+      {dataUsers.map((item) => (
+        <div key={item.address.zipcode}>
+          <h2>{item.name}</h2>
+        </div>
+      ))}
     </div>
   );
-}
-
-export default App;
+};
