@@ -1,19 +1,15 @@
+// STYLES
+import { useStyle } from "./style";
 // MUI
 import { Grid } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Typography } from "@mui/material";
 
 export const UserItem = ({ item }) => {
+  const classes = useStyle();
   return (
     <Grid xs={6}>
-      <Paper
-        sx={{
-          backgroundColor: "rgba(235, 160, 85, 0.6)",
-          padding: "15px",
-          margin: "5px",
-          textAlign: "center",
-        }}
-      >
+      <Paper className={classes.paper}>
         <Typography gutterBottom variant="h4" component="p">
           {item.name}
         </Typography>
