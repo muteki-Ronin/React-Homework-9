@@ -1,25 +1,24 @@
 // CORE
 import { takeEvery, put, call } from "redux-saga/effects";
+// ACTIONS
+import {
+  setUsersAction,
+  setUsersActionError,
+} from "../actions/actions";
 // CONSTS
 import { GET_USERS } from "../consts/consts";
-// ACTIONS
-import { setUsersAction } from "../actions/actions";
 // API
 import { getUsersAPI } from "../../api";
 
-function* workerSaga() {
+function* setUsersWork() {
   try {
     const data = yield call(getUsersAPI);
     yield put(setUsersAction(data));
   } catch {
-    // error
+    yield put(setUsersActionError("ERROR DATA USERS!!!"));
   }
 }
 
-export function* watchSaga() {
-  yield takeEvery(GET_USERS, workerSaga);
-}
-
-export function* rootSaga() {
-  yield watchSaga();
+export function* getUsersWatch() {
+  yield takeEvery(GET_USERS, setUsersWork);
 }

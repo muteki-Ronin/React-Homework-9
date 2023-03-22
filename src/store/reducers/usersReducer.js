@@ -1,8 +1,10 @@
 // CONSTS
-import { SET_USERS } from "../consts/consts";
+import { SET_USERS, SET_USERS_ERROR } from "../consts/consts";
 
 const initialState = {
   users: [],
+  error: null,
+  isLoading: true,
 };
 
 export const usersReducer = (state = initialState, action) => {
@@ -11,7 +13,11 @@ export const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: [...action.payload],
+        isLoading: false,
       };
+    case SET_USERS_ERROR: {
+      return { ...state, error: action.payload, isLoading: false };
+    }
     default:
       return state;
   }
