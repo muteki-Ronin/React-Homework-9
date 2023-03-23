@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 export const UserItem = ({ item }) => {
   const classes = useStyle();
   return (
-    <Grid xs={6}>
+    <Grid item xs={6}>
       <Paper className={classes.paper}>
         <Typography gutterBottom variant="h4" component="p">
           {item.name}
